@@ -1,6 +1,7 @@
 # Based on materials copyright 2010 Google Inc.
 # Licensed under the Apache License, Version 2.0
 
+#Debugging print commands are left throughout the code, remove to debug
 
 def donuts(count):
     """
@@ -20,10 +21,10 @@ def donuts(count):
     """ 
     int_count = int(count)
     if count >= 10:
-        print 'many'
+    #    print 'many'
         return 'Number of donuts: many'
     else:
-        print int_count
+    #    print int_count
         return 'Number of donuts: %d' % int_count
 
     raise NotImplementedError
@@ -46,13 +47,13 @@ def both_ends(s):
     'xyyz'
     """
     if len(s)<2:
-        print 'empty'
+    #    print 'empty'
         return ''
     else:
         ret_str = s[0:2]+s[len(s)-2:len(s)]
-        print ret_str
+    #    print ret_str
         return ret_str
-        
+
     raise NotImplementedError
 
 
@@ -72,7 +73,10 @@ def fix_start(s):
     >>> fix_start('donut')
     'donut'
     """
-    
+   
+    fixed_s = s[0] + s[1:len(s)].replace(s[0],"*")
+    # print fixed_s
+    return fixed_s
     raise NotImplementedError
 
 
@@ -91,6 +95,11 @@ def mix_up(a, b):
     >>> mix_up('pezzy', 'firm')
     'fizzy perm'
     """
+    c = b[0] + a[1:len(a)] \
+        + " " \
+        + a[0] + b[1:len(b)]
+    #print c
+    return c
     raise NotImplementedError
 
 
@@ -108,6 +117,16 @@ def verbing(s):
     >>> verbing('do')
     'do'
     """
+    if len(s) >= 3:
+        if s[len(s)-3:len(s)] == "ing":
+            fin_s = s + "ly"
+            return fin_s
+        else:
+            fin_s = s + "ing"
+            return fin_s
+    else:
+        return s
+        
     raise NotImplementedError
 
 
@@ -128,6 +147,14 @@ def not_bad(s):
     >>> not_bad("It's bad yet not")
     "It's bad yet not"
     """
+    not_index = s.find("not")
+    bad_index = s.find("bad")
+
+    if not_index > -1 and bad_index > not_index:
+        return_string = s[0:not_index] + "good" + s[bad_index+3:len(s)]
+        return return_string
+    else:
+        return s
     raise NotImplementedError
 
 
@@ -147,14 +174,44 @@ def front_back(a, b):
     >>> front_back('Kitten', 'Donut')
     'KitDontenut'
     """
+    a_half = int(round(float(len(a))/2))
+    b_half = int(round(float(len(b))/2))
+
+    end_string = a[0:a_half] + b[0:b_half] + a[a_half:len(a)] + b[b_half:len(b)]
+    return end_string
     raise NotImplementedError
 
-donuts(10)
-donuts(50)
-donuts(1)
-donuts(2)
+#donuts(10)
+#donuts(50)
+#donuts(1)
+#donuts(2)
 
-both_ends("testy")
-both_ends('supderduperlong')
-both_ends('asd')
-both_ends('a')
+#both_ends("testy")
+#both_ends('supderduperlong')
+#both_ends('asd')
+#both_ends('a')
+
+#fix_start("babble")
+#fix_start("asssaaaassaasaass")
+#fix_start("super")
+#fix_start("testy ttteee")
+
+#mix_up("super", "duper")
+#mix_up("testy", "random")
+#mix_up("the", "purge")
+#mix_up("rick", "morty")
+
+#print verbing("halting")
+#print verbing("halt")
+#print verbing("as")
+#print verbing("baby")
+
+#print not_bad("not bad")
+#print not_bad("this program is not really good good bad")
+#print not_bad("testy test test not not not")
+#print not_bad("bad bad not not")
+#print not_bad("super super super")
+
+#print front_back("abcde","wxyz")
+#print front_back("Swiggity", "Swoogity")
+#print front_back("Kitten", "Donut")
