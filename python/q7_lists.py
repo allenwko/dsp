@@ -15,6 +15,12 @@ def match_ends(words):
     >>> match_ends(['aaa', 'be', 'abc', 'hello'])
     1
     """
+    count = 0
+    for i in words:
+        if len(i) >= 2 and i[0] == i[len(i)-1]:
+            count += 1
+    
+    return count
     raise NotImplementedError
 
 
@@ -32,6 +38,11 @@ def front_x(words):
     >>> front_x(['mix', 'xyz', 'apple', 'xanadu', 'aardvark'])
     ['xanadu', 'xyz', 'aardvark', 'apple', 'mix']
     """
+    sorted_words = sorted(words)
+    x_list = [i for i in sorted_words if i[0] == "x"]
+    not_xlist = [i for i in sorted_words if i[0] != "x"]
+    final_list = x_list + not_xlist
+    return final_list
     raise NotImplementedError
 
 
@@ -49,6 +60,8 @@ def sort_last(tuples):
     >>> sort_last([(1, 7), (1, 3), (3, 4, 5), (2, 2)])
     [(2, 2), (1, 3), (3, 4, 5), (1, 7)]
     """
+    sorted_tuples = sorted(tuples, key = lambda x:x[len(x)-1])
+    return sorted_tuples
     raise NotImplementedError
 
 
@@ -68,6 +81,14 @@ def remove_adjacent(nums):
     >>> remove_adjacent([])
     []
     """
+    count = 0
+    nums_copy = list(nums)
+    for i in range(len(nums)-1):
+        if nums[i] == nums[i+1]:
+            nums_copy.pop(i-count)
+            count += 1
+    return nums_copy
+
     raise NotImplementedError
 
 
@@ -85,4 +106,26 @@ def linear_merge(list1, list2):
     >>> linear_merge(['aa', 'aa'], ['aa', 'bb', 'bb'])
     ['aa', 'aa', 'aa', 'bb', 'bb']
     """
+    list3 = list1 + list2
+    sorted_l3 = sorted(list3)
+    return sorted_l3
     raise NotImplementedError
+
+
+#print match_ends(["aa", "bb", "aassss", "hello"])
+#print match_ends(["i", "a", "bbbbb", "aksjdal;kjdsa"])
+
+#print front_x(["ab", "bb", "ce", "xaa", "xee"])
+
+#print sort_last([(1, 7), (1, 3), (3, 4, 5), (2, 2)])
+
+
+#print remove_adjacent([1, 2, 2, 3])
+#print remove_adjacent([2, 2, 3, 3, 3])
+#print remove_adjacent([3, 2, 3, 3, 3])
+#print remove_adjacent([])
+
+
+#print linear_merge(['aa', 'xx', 'zz'], ['bb', 'cc'])
+#print linear_merge(['aa', 'xx'], ['bb', 'cc', 'zz'])
+#print linear_merge(['aa', 'aa'], ['aa', 'bb', 'bb'])
