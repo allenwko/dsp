@@ -41,7 +41,7 @@ def count_email_domains(listdict):
     return Counter(domain_list)
 
 fac_data = csv_to_dict('faculty.csv')
-field_freq(fac_data, ' degree')
-field_freq(fac_data, ' title')
-#print email_list(fac_data)
+print field_freq(fac_data, ' degree')
+print field_freq(fac_data, ' title')
+print email_list(fac_data)
 print count_email_domains(fac_data)
